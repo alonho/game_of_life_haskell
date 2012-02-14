@@ -27,10 +27,10 @@ next_board a = map (\x -> map (\y -> next_cell_state a x y)
 	           [0..length a - 1]
 
 _main board = do putStr $ board_repr board
-                 threadDelay 100000
+                 threadDelay 1000
            	 _main (next_board board)
 
-bools n = take n (randomRs (False, True) (mkStdGen 42))
+bools n r = take n (randomRs (False, True) (mkStdGen r))
 
 main :: IO ()
-main = _main [bools 50 | i <- [1..50]]
+main = _main [bools 50 r | r <- [1..25]]
